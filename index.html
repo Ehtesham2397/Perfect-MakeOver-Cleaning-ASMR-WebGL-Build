@@ -28,6 +28,9 @@
     @media (prefers-reduced-motion: reduce) { #backdrop, .bubble { animation-play-state: paused; } }
     #unity-canvas { position: fixed; left: 0; top: 0; background: #000; touch-action: none; outline: none; box-shadow: 0 0 60px 18px rgba(0,0,0,.55); }
     #loading { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 12px; border-radius: 6px; background: #fff; overflow: hidden; z-index: 2; }
+    /* Logo above the loading bar, sized to the 9:16 game area. */
+    #loading-logo { position: fixed; left: 50%; bottom: calc(50% + 34px); width: min(78vw, 44vh); height: auto;
+      transform: translateX(-50%); z-index: 2; pointer-events: none; }
     #loading-fill { width: 0; height: 100%; background: #ebad64; }
   </style>
 </head>
@@ -49,6 +52,7 @@
     <span class="bubble" style="width:17px;height:17px;left:80.7%;animation-duration:32.4s;animation-delay:-6.9s;--sway:-12px"></span>
   </div>
   <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <img id="loading-logo" src="TemplateData/logo.png" alt="Perfect MakeOver Cleaning ASMR">
   <div id="loading"><div id="loading-fill"></div></div>
   <script>
     var canvas = document.getElementById("unity-canvas");
@@ -76,9 +80,9 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/WebGL.data.unityweb",
-      frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
-      codeUrl: buildUrl + "/WebGL.wasm.unityweb",
+      dataUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.data.unityweb",
+      frameworkUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.framework.js.unityweb",
+      codeUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Apex Theory Game",
       productName: "Perfect MakeOver Cleaning ASMR",
@@ -86,12 +90,13 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/WebGL.loader.js";
+    script.src = buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         fill.style.width = (100 * progress) + "%";
       }).then(function () {
         loading.style.display = "none";
+        document.getElementById("loading-logo").style.display = "none";
       }).catch(function (message) {
         alert(message);
       });
