@@ -80,9 +80,14 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.data.unityweb",
-      frameworkUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.framework.js.unityweb",
-      codeUrl: buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.wasm.unityweb",
+      dataUrl: buildUrl + "/3a1935cefcf5072056ab7074454ef849.data.unityweb",
+      frameworkUrl: buildUrl + "/3542491fc97d10b05752600a86c96545.framework.js.unityweb",
+      codeUrl: buildUrl + "/07d40ce3f7e9965b6313f3d84392771f.wasm.unityweb",
+      // Hashed file names (Name Files As Hashes) change with their content, so a cached copy never
+      // goes stale. Any other name is checked with the server, so players can't get stuck on an old build.
+      cacheControl: function (url) {
+        return /\/[0-9a-f]{32}\./.test(url) ? "immutable" : "must-revalidate";
+      },
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Apex Theory Game",
       productName: "Perfect MakeOver Cleaning ASMR",
@@ -90,7 +95,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/Perfect-MakeOver-Cleaning-ASMR-WebGL-Build.loader.js";
+    script.src = buildUrl + "/86e185b1716eef03e3cddc99eba0fc37.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         fill.style.width = (100 * progress) + "%";
